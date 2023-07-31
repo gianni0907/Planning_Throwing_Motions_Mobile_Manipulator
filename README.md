@@ -7,11 +7,9 @@ When planning a throwing trajectory for a robot, the motion is divided into two 
 - _Approach 1_ : optimization of the throwing state is incorporated in the same OCP of the throwing phase trajectory, while the stopping phase is solved separately with a second OCP.
 - _Approach 2_ : the throwing phase, the throwing state and the stopping phase are incorporated in the same OCP.
 
-The following video - also in `media/video_approaches.mp4` file - shows a comparison among the different approaches
+The following video - which is extracted from the full video available in `media/video_approaches.mp4` - shows a comparison among the different approaches
 
-
-https://github.com/gianni0907/Planning_Throwing_Motions_Mobile_Manipulator/assets/72451400/dc6a7c40-a0ff-4366-bfbd-250c85a200e9
-
+https://github.com/gianni0907/Planning_Throwing_Motions_Mobile_Manipulator/assets/72451400/b3efd6fc-ebbc-4359-9eb9-db558bac3f32
 
 Then, considering only the _Approach 2_ additional simulations are carried out to show more aggressive and dynamic motions, to better appreciate the importance of the balance constraint. The simulations involve three different initial configurations for the Mobile Manipulator:
 * stretched down manipulator arm
@@ -21,8 +19,7 @@ Then, considering only the _Approach 2_ additional simulations are carried out t
 Moreover, the influence of a base motion penalization term in the Cost Function of the NLP is investigated.
 The following video - also in `media/video_aggressive_manoeuvres.mp4` file - shows the obtained results
 
-https://github.com/gianni0907/Planning_Throwing_Motions_Mobile_Manipulator/assets/72451400/6e94a7ab-ac24-45ba-ac9a-da2d33f4a580
-
+https://github.com/gianni0907/Planning_Throwing_Motions_Mobile_Manipulator/assets/72451400/69ff2ccb-2374-43a1-979e-24455418c060
 
 Further details are available in the report.
 
