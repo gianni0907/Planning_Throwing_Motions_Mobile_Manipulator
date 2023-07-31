@@ -3,9 +3,9 @@ The aim of this project is to plan a throwing motion for a planar mobile manipul
 Robot balance is guaranteed along the whole planned trajectory using an appropriate nonlinear constraint based on the MM full dynamics, ensuring non-negative moments around the edges of the support polygon.
 ## Proposed methods
 When planning a throwing trajectory for a robot, the motion is divided into two main phases: the _throwing phase_ that takes place in the time interval $[t_{init},t_{rel}]$ and the _stopping phase_ in $(t_{rel},t_{final}]$. To solve the motion planning problem we take different approaches:
-    * _Approach 0_ : solve an OCP to find a kinematically feasible throwing state $\textbf{x}_{rel}$. Then, we solve the two phases separately: one OCP gives an optimal trajectory from $\textbf{x}_{init}$ to $\textbf{x}_{rel}$, and another OCP from $\textbf{x}_{rel}$ to $\textbf{x}_{final}$.
-    * _Approach 1_ : optimization of the throwing state is incorporated in the same OCP of the throwing phase trajectory, while the stopping phase is solved separately with a second OCP.
-    * _Approach 2_ : the throwing phase, the throwing state and the stopping phase are incorporated in the same OCP.
+    - _Approach 0_ : solve an OCP to find a kinematically feasible throwing state $\textbf{x}_{rel}$. Then, we solve the two phases separately: one OCP gives an optimal trajectory from $\textbf{x}_{init}$ to $\textbf{x}_{rel}$, and another OCP from $\textbf{x}_{rel}$ to $\textbf{x}_{final}$.
+    - _Approach 1_ : optimization of the throwing state is incorporated in the same OCP of the throwing phase trajectory, while the stopping phase is solved separately with a second OCP.
+    - _Approach 2_ : the throwing phase, the throwing state and the stopping phase are incorporated in the same OCP.
 The following video --- also in `media/video_approaches.mp4` file --- shows a comparison among the different approaches
 ![Approaches](media/video_approaches.mp4)
 
