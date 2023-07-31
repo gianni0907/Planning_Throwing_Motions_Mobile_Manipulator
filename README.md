@@ -1,5 +1,40 @@
-# Planning_Throwing_Motions_Mobile_Manipulator
+# Planning Throwing Motions for Mobile Manipulator
 The aim of this project is to plan a throwing motion for a planar mobile manipulator (MM), in an attempt to increase its workspace or reduce the time needed for a pick and place task. The motion planning problem is formulated as an Optimal Control Problem (OCP) and solved using numerical optimization via the Optimization Toolbox of MATLAB.
 Robot balance is guaranteed along the whole planned trajectory using an appropriate nonlinear constraint based on the MM full dynamics, ensuring non-negative moments around the edges of the support polygon.
+## Proposed_methods
+When planning a throwing trajectory for a robot, the motion is divided into two main phases: the \textit{throwing phase} that takes place in the time interval $[t_{init},t_{rel}]$ and the \textit{stopping phase} in $(t_{rel},t_{final}]$. To solve the motion planning problem we take different approaches:
+\begin{itemize}
+    \item[-] (\textbf{Approach 0}) solve an OCP to find a kinematically feasible throwing state $\bm{x}_{rel}$. Then, we solve the two phases separately: one OCP gives an optimal trajectory from $\bm{x}_{init}$ to $\bm{x}_{rel}$, and another OCP from $\bm{x}_{rel}$ to $\bm{x}_{final}$. The optimal trajectories satisfy \ref{itm:req_2}, \ref{itm:req_3}.
+    \item[-] (\textbf{Approach 1}) optimization of the throwing state is incorporated in the same OCP of the throwing phase trajectory, while the stopping phase is solved separately with a second OCP.
+    \item[-] (\textbf{Approach 2}) the throwing phase, the throwing state and the stopping phase are incorporated in the same OCP.
+\end{itemize}
+The following video --- also in `media/video_approaches.mp4` file --- shows a comparison among the different approaches
 
+Then, considering only the \textbf{Approach 2} additional simulations are carried out to show more aggressive and dynamic motions, to better appreciate the importance of the balance constraint. The simulations involve three different initial configurations for the Mobile Manipulator:
+\begin{enumerate}
+    \item[] stretched down manipulator arm;
+    \item[] stretched forward manipulator arm;
+    \item[] stretched upward manipulator arm.
+\end{enumerate}
+Moreover, the influence of a base motion penalization term in the Cost Function of the NLP is investigated.
+The following video --- also in `media/video_aggressive_manoeuvres.mp4` file --- shows the obtained results
+
+Further details are available in the report.
+
+## Main source files
+In the `source` folder it is possible to find three different subdirectory, one for each approach. The main files in each subdirectory are:
+\begin{itemize}
+    \item[] (`dyn_model_complete.m`) derives the dynamic model of the robot. It generates 3 functions:
+    \begin{itemize}
+        \item[-] (`get_balance_terms.m`) used to formulate the balance constraint
+        \item[-] (`get_dyn_terms.m`) used for the equations of motion in `ct_dynamics.m`
+        \item[-] (`get_gen_forces.m`) that computes the reaction forces used to find the ZMP
+    \end{itemize}
+    \item[] (`optimization.m`) solves the Non Linear Program
+    \item[] (`dt_dynamics.m`) discretizes the dynamics with 4th-order Runge-Kutta
+    \item[] (`weighted_matrix.m`) used for checking the validity of velocity weighting matrix
+	\item[] (`dyn_model_PRR.m`) contains the simplified dynamic model considering the MM as a PRR robot (not used)
+\end{itemize}
+
+A sketch of the mobile Manipulator is shown in `media/MM_sketch.PNG`.
 Project realized by me (gianba.gravina7@gmail.com) and Nunziante Luca (luca.nunziante1999@gmail.com)
